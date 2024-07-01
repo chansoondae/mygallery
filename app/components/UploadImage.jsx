@@ -5,7 +5,7 @@ function UploadImage({setFile}) {
 
 
   return (
-    <div className='md:h-[250px] lg:h-[450px] w-full bg-red-50
+    <div className='sm:h-48 md:h-64 lg:h-96 w-full bg-red-50
     rounded-lg'>
         
         <label className='flex flex-col justify-center items-center

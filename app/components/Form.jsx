@@ -105,7 +105,7 @@ function Form() {
    
    
   return (
-    <div className=' bg-white p-16 rounded-2xl '>
+    <div className=' bg-white p-2 rounded-2xl '>
         {session?        <div className='flex justify-end mb-6'>
             <button onClick={()=>onSave()}
              className='bg-red-500 p-2
@@ -142,20 +142,20 @@ function Form() {
         </div>
         <input type="text" placeholder='작품 제목' value={title}
             onChange={(e)=>setTitle(e.target.value)} 
-        className='text-3xl outline-none font-bold w-full
+        className='text-3xl outline-none font-bold w-full text-black
         border-b-[2px] mt-4 border-gray-400 placeholder-gray-400'/>
         <input type="text" placeholder='작가 이름'  value={artist}
             onChange={(e)=>setArtist(e.target.value)} 
-        className='text-3xl outline-none font-bold w-full
+        className='text-3xl outline-none font-bold w-full text-black
         border-b-[2px] mt-4  border-gray-400 placeholder-gray-400'/>
         <input type="text" placeholder='미술관'  value={museum}
             onChange={(e)=>setMuseum(e.target.value)} 
-        className='text-3xl outline-none font-bold w-full
+        className='text-3xl outline-none font-bold w-full text-black
         border-b-[2px] mt-4 border-gray-400 placeholder-gray-400'/>
         <textarea type="text"
           onChange={(e)=>setReview(e.target.value)}
             placeholder='감상평'   value={review}
-        className=' outline-none min-h-44 w-full mt-2 pb-4 text-xl
+        className=' outline-none min-h-44 w-full mt-2 pb-4 text-xl text-black
         border-b-[2px] border-gray-400 placeholder-gray-400'/>
           {/* <input type="text"
           onChange={(e)=>setLink(e.target.value)}
