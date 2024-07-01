@@ -10,6 +10,9 @@ import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 import { GoogleGenerativeAI } from "@google/generative-ai"
 
+
+const aiapi = process.env.GOOGLE_AI_API;
+
 function Form() {
     const {data:session}=useSession();
     const [title,setTitle]=useState('');
@@ -26,8 +29,7 @@ function Form() {
     const postId=Date.now().toString();
 
     //google gemini
-    const API_KEY = "AIzaSyDRMw3UaI0Pj8m82Up3FlY3jAQLfFe2Vx8";
-    const genAI = new GoogleGenerativeAI(API_KEY);
+    const genAI = new GoogleGenerativeAI(process.env.GOOGLE_AI_API);
     const model = genAI.getGenerativeModel({
         model: "gemini-1.5-flash",
         // Set the `responseMimeType` to output JSON
