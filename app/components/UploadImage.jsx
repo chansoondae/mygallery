@@ -5,11 +5,11 @@ function UploadImage({setFile}) {
 
 
   return (
-    <div className='h-[450px] bg-[#e9e9e9]
+    <div className='md:h-[250px] lg:h-[450px] w-full bg-red-50
     rounded-lg'>
         
-        <label className='m-5 flex flex-col justify-center items-center
-        cursor-pointer h-[90%] 
+        <label className='flex flex-col justify-center items-center
+        cursor-pointer h-[100%]
         border-[2px] border-gray-300 border-dashed rounded-lg text-gray-600 '>
            
           {!selectedFile?
@@ -26,6 +26,7 @@ function UploadImage({setFile}) {
             className='object-contain h-[90%]'
             />:null}
             <input id="dropzone-file" type="file"
+             accept="image/*" data-type='image'
              className="hidden"  
              onChange={(e)=>{setFile(e.target.files[0]);
              setSelectedFile(e.target.files[0])}} />

@@ -51,19 +51,24 @@ function Form() {
        uploadFile();
     }
     const onAI=async()=>{
-        setLoadingAI(true);
-        const prompt = "I'm going to ask for the name of the work, the name of the artist, the museum, and the review of the painting. Please tell me in Korean. Answer should follow this JSON schema: Art_Info = {'name': Artist name, 'title': The title of the art work,'musuem': the museum where it has, 'review': a commentary on a work of art} "
+        if(file){
+            setLoadingAI(true);
+            const prompt = "I'm going to ask for the name of the work, the name of the artist, the museum, and the review of the painting. Please tell me in Korean. Answer should follow this JSON schema: Art_Info = {'name': Artist name, 'title': The title of the art work,'musuem': the museum where it has, 'review': a commentary on a work of art} "
+    
+            const imageParts = await fileToGenerativePart(file);
+            let result = await model.generateContent([prompt,imageParts]);
+            const response = await result.response;
+            console.log(response.text());
+            const contents= JSON.parse(response.text());
+            setTitle("🖼️ "+ contents.title);
+            setArtist("👤 " + contents.name);
+            setMuseum("🏛️ " + contents.musuem);
+            setReview(contents.review);
+            setLoadingAI(false);
+        } else{
+            alert("그림 파일을 넣어주세요.");
+        }
 
-        const imageParts = await fileToGenerativePart(file);
-        let result = await model.generateContent([prompt,imageParts]);
-        const response = await result.response;
-        console.log(response.text());
-        const contents= JSON.parse(response.text());
-        setTitle(contents.title);
-        setArtist(contents.name);
-        setMuseum(contents.musuem);
-        setReview(contents.review);
-        setLoadingAI(false);
      }
 
     const uploadFile=()=>{
@@ -113,44 +118,44 @@ function Form() {
                 className='animate-spin'  />:
                 <span>Save</span>}</button> 
         </div>:null}
-        <div className='grid grid-cols-1 lg:grid-cols-3 gap-10'>
+        <div className='grid grid-cols-1 lg:grid-cols-3 md: gap-y-4 lg:gap-10'>
            
             <UploadImage setFile={(file)=>setFile(file)} />
           
        <div className="col-span-2">
        <div className='w-[100%]'>
-        <div className='flex justify-between'>
+        <div className='flex justify-between items-center '>
             <UserTag user={session?.user} />
 
             <button onClick={()=>onAI()}
                 className='bg-yellow-500 p-2
                 text-white font-semibold px-3 
-                rounded-lg'>
+                rounded-lg w-full grid justify-items-center'>
                 {
-                    loadingAI?  <Image src="/loading-indicator.png" 
+                    loadingAI?  <span><Image src="/loading-indicator.png" 
                     width={30} 
                     height={30} 
                     alt='loadingAI'
-                    className='animate-spin'  />:<span>AI</span>
+                    className='animate-spin'  /></span>:<span>AI 정보 검색</span>
                 }
             </button> 
         </div>
         <input type="text" placeholder='작품 제목' value={title}
             onChange={(e)=>setTitle(e.target.value)} 
-        className='text-[35px] outline-none font-bold w-full
+        className='text-3xl outline-none font-bold w-full
         border-b-[2px] mt-4 border-gray-400 placeholder-gray-400'/>
         <input type="text" placeholder='작가 이름'  value={artist}
             onChange={(e)=>setArtist(e.target.value)} 
-        className='text-[35px] outline-none font-bold w-full
+        className='text-3xl outline-none font-bold w-full
         border-b-[2px] mt-4  border-gray-400 placeholder-gray-400'/>
         <input type="text" placeholder='미술관'  value={museum}
             onChange={(e)=>setMuseum(e.target.value)} 
-        className='text-[35px] outline-none font-bold w-full
+        className='text-3xl outline-none font-bold w-full
         border-b-[2px] mt-4 border-gray-400 placeholder-gray-400'/>
         <textarea type="text"
           onChange={(e)=>setReview(e.target.value)}
             placeholder='감상평'   value={review}
-        className=' outline-none min-h-44 w-full mt-2 pb-4 text-[16px]
+        className=' outline-none min-h-44 w-full mt-2 pb-4 text-xl
         border-b-[2px] border-gray-400 placeholder-gray-400'/>
           {/* <input type="text"
           onChange={(e)=>setLink(e.target.value)}
