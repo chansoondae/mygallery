@@ -5,9 +5,9 @@ const nextConfig = {
     },
     reactStrictMode: false,
     env: {
-        GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
-        GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET,
-        GOOGLE_AI_API: process.env.GOOGLE_AI_API,
+        GOOGLE_CLIENT_ID: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID,
+        GOOGLE_CLIENT_SECRET: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_SECRET,
+        GOOGLE_AI_API: process.env.NEXT_PUBLIC_GOOGLE_AI_API,
     },
 }; 
 

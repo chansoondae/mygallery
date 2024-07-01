@@ -11,8 +11,6 @@ import Image from 'next/image'
 import { GoogleGenerativeAI } from "@google/generative-ai"
 
 
-const aiapi = process.env.GOOGLE_AI_API;
-
 function Form() {
     const {data:session}=useSession();
     const [title,setTitle]=useState('');
@@ -29,7 +27,7 @@ function Form() {
     const postId=Date.now().toString();
 
     //google gemini
-    const genAI = new GoogleGenerativeAI(process.env.GOOGLE_AI_API);
+    const genAI = new GoogleGenerativeAI(process.env.NEXT_PUBLIC_GOOGLE_AI_API);
     const model = genAI.getGenerativeModel({
         model: "gemini-1.5-flash",
         // Set the `responseMimeType` to output JSON
