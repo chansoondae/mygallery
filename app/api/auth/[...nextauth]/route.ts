@@ -3,9 +3,13 @@ import GoogleProvider from "next-auth/providers/google";
 
 const handler = NextAuth({
     callbacks: {
-        session({ session, token, user }) {
-          return session // The return type will match the one returned in `useSession()`
+        async jwt({ token }) {
+          token.userRole = "user"
+          return token
         },
+        // session({ session, token, user }) {
+        //   return session // The return type will match the one returned in `useSession()`
+        // },
       },
     providers: [
         GoogleProvider({
