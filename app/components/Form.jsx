@@ -58,7 +58,7 @@ function Form() {
             const imageParts = await fileToGenerativePart(file);
             let result = await model.generateContent([prompt,imageParts]);
             const response = await result.response;
-            console.log(response.text());
+            // console.log(response.text());
             const contents= JSON.parse(response.text());
             setTitle("🖼️ "+ contents.title);
             setArtist("👤 " + contents.name);
@@ -103,67 +103,73 @@ function Form() {
     }
 
    
-   
+
   return (
     <div className=' bg-white p-2 rounded-2xl '>
-        {session?        <div className='flex justify-end mb-6'>
-            <button onClick={()=>onSave()}
-             className='bg-red-500 p-2
-            text-white font-semibold px-3 
-            rounded-lg'>
-              {loading?  <Image src="/loading-indicator.png" 
-                width={30} 
-                height={30} 
-                alt='loading'
-                className='animate-spin'  />:
-                <span>Save</span>}</button> 
-        </div>:null}
+
         <div className='grid grid-cols-1 lg:grid-cols-3 md: gap-y-4 lg:gap-10'>
            
-            <UploadImage setFile={(file)=>setFile(file)} />
+            <UploadImage setFile={(file)=>setFile(file)} setTitle={setTitle} setArtist={setArtist} setMuseum={setMuseum} setReview={setReview}/>
           
        <div className="col-span-2">
-       <div className='w-[100%]'>
-        <div className='flex justify-between items-center '>
-            <UserTag user={session?.user} />
+            <div className='w-[100%]'>
+                <div className='flex justify-between items-center '>
+                    <div>
+                        <UserTag user={session?.user} />
+                    </div>
 
-            <button onClick={()=>onAI()}
-                className='bg-yellow-500 p-2
-                text-white font-semibold px-3 
-                rounded-lg w-full grid justify-items-center'>
-                {
-                    loadingAI?  <span><Image src="/loading-indicator.png" 
+                    <div>
+                        <button onClick={()=>onAI()}
+                            className='bg-yellow-500 p-2
+                            text-white font-semibold px-3 
+                            rounded-lg w-full grid justify-items-center'>
+                            {
+                                loadingAI?  <span><Image src="/loading-indicator.png" 
+                                width={30} 
+                                height={30} 
+                                alt='loadingAI'
+                                className='animate-spin'  /></span>:<span>AI 정보 검색</span>
+                            }
+                        </button> 
+                    </div>
+                </div>
+            <input type="text" placeholder='작품 제목' value={title}
+                onChange={(e)=>setTitle(e.target.value)} 
+                className='text-3xl outline-none font-bold w-full text-black
+                border-b-[2px] mt-4 border-gray-400 placeholder-gray-400'/>
+            <input type="text" placeholder='작가 이름'  value={artist}
+                onChange={(e)=>setArtist(e.target.value)} 
+                className='text-3xl outline-none font-bold w-full text-black
+                border-b-[2px] mt-4  border-gray-400 placeholder-gray-400'/>
+            <input type="text" placeholder='미술관'  value={museum}
+                onChange={(e)=>setMuseum(e.target.value)} 
+                className='text-3xl outline-none font-bold w-full text-black
+            border-b-[2px] mt-4 border-gray-400 placeholder-gray-400'/>
+            <textarea type="text"
+                onChange={(e)=>setReview(e.target.value)}
+                placeholder='감상평'   value={review}
+                className=' outline-none min-h-32 w-full mt-2 pb-4 text-xl text-black
+                border-b-[2px] border-gray-400 placeholder-gray-400'/>
+            {/* <input type="text"
+            onChange={(e)=>setLink(e.target.value)}
+            placeholder='Add a Destination Link' 
+                className=' outline-none  w-full  pb-4 mt-2
+                border-b-[2px] border-gray-400 placeholder-gray-400'/> */}
+
+            <button onClick={()=>onSave()}
+                className='bg-red-500 p-2
+                text-white font-semibold px-3 w-full
+                rounded-lg'>
+                {loading?  <Image src="/loading-indicator.png" 
                     width={30} 
                     height={30} 
-                    alt='loadingAI'
-                    className='animate-spin'  /></span>:<span>AI 정보 검색</span>
-                }
+                    alt='loading'
+                    className='animate-spin'  />:
+                    <span>Save</span>}
             </button> 
+
+            </div>
         </div>
-        <input type="text" placeholder='작품 제목' value={title}
-            onChange={(e)=>setTitle(e.target.value)} 
-        className='text-3xl outline-none font-bold w-full text-black
-        border-b-[2px] mt-4 border-gray-400 placeholder-gray-400'/>
-        <input type="text" placeholder='작가 이름'  value={artist}
-            onChange={(e)=>setArtist(e.target.value)} 
-        className='text-3xl outline-none font-bold w-full text-black
-        border-b-[2px] mt-4  border-gray-400 placeholder-gray-400'/>
-        <input type="text" placeholder='미술관'  value={museum}
-            onChange={(e)=>setMuseum(e.target.value)} 
-        className='text-3xl outline-none font-bold w-full text-black
-        border-b-[2px] mt-4 border-gray-400 placeholder-gray-400'/>
-        <textarea type="text"
-          onChange={(e)=>setReview(e.target.value)}
-            placeholder='감상평'   value={review}
-        className=' outline-none min-h-44 w-full mt-2 pb-4 text-xl text-black
-        border-b-[2px] border-gray-400 placeholder-gray-400'/>
-          {/* <input type="text"
-          onChange={(e)=>setLink(e.target.value)}
-           placeholder='Add a Destination Link' 
-        className=' outline-none  w-full  pb-4 mt-2
-        border-b-[2px] border-gray-400 placeholder-gray-400'/> */}
-    </div>
-       </div>
         
         </div>
     </div>

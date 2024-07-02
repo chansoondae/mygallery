@@ -10,7 +10,7 @@ function Profile({params}) {
     const[userInfo,setUserInfo]=useState();
     const[listOfPics, setListOfPics]=useState([]);
     useEffect(()=>{
-        console.log(params.userId.replace('%40','@'))
+        // console.log(params.userId.replace('%40','@'))
         if(params){
             getUserInfo(params.userId.replace('%40','@'));
         }
@@ -41,7 +41,7 @@ function Profile({params}) {
     
         querySnapshot.forEach((doc) => {
           // doc.data() is never undefined for query doc snapshots
-          console.log(doc.id, " => ", doc.data());
+        //   console.log(doc.id, " => ", doc.data());
           setListOfPics(listOfPics=>[...listOfPics,doc.data()]);
         });
     

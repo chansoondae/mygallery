@@ -4,7 +4,7 @@ import { signOut,useSession } from "next-auth/react"
 import { useRouter } from 'next/navigation';
 
 function UserInfo({userInfo}) {
-    console.log(userInfo);
+    // console.log(userInfo);
     const router=useRouter();
     const {data:session}=useSession();
     const onLogoutClick=()=>{

@@ -10,8 +10,8 @@ function PicInfo({picDetail}) {
   return (
     <div>
       <h2 className='text-[30px] font-bold mb-5'>🖼️ {picDetail.title}</h2>
-      <h2 className='text-[30px] font-bold mb-5'>&#128100; {picDetail.artist}</h2>
-      <h2 className='text-[30px] font-bold mb-5'>&#127963; {picDetail.museum}</h2>
+      <h2 className='text-[30px] font-bold mb-5'>👤 {picDetail.artist}</h2>
+      <h2 className='text-[30px] font-bold mb-5'>🏛️ {picDetail.museum}</h2>
       <UserTag user={user} />
       <h2 className='mt-10'>{picDetail.review}</h2>
       <button className='p-2 bg-[#e9e9e9] px-5 text-[23px]

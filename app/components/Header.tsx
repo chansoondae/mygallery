@@ -30,14 +30,13 @@ function Header() {
     }
 
     const onCreateClick=()=>{
-      router.push('/art-builder')
-      // if(session)
-      // {
-      //   router.push('/art-builder')
-      // }
-      // else{
-      //   signIn()
-      // }
+      if(session)
+      {
+        router.push('/art-builder')
+      }
+      else{
+        signIn()
+      }
     }
 
 
@@ -58,9 +57,8 @@ function Header() {
         <Image src={session?.user?.image as string} 
         onClick={()=>router.push('/users/'+session.user?.email)}
         alt='user-image' width={50} height={50} className='hover:bg-gray-300 p-2 rounded-full cursor-pointer' />
-      // :  <button className='font-semibold p-2 px-4 rounded-full' onClick={() => signIn()} >Login</button>
-      :  <button className='font-semibold p-2 px-4 rounded-full' onClick={() => alert("잠시 가입은 막아둘게요😃")} >Login</button>
-        }
+      :  <button className='font-semibold p-2 px-4 rounded-full' onClick={() => signIn()} >Login</button>
+      }
      
     </div>
   )

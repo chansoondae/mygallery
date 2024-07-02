@@ -12,7 +12,7 @@ export default function Home() {
   const db=getFirestore(app);
   const [listOfPics,setListOfPics]=useState<DocumentData[]>([]);
 
-  console.log(listOfPics);
+  // console.log(listOfPics);
   
   useEffect(()=>{
     getAllPics();
@@ -24,7 +24,7 @@ export default function Home() {
       const querySnapshot = await getDocs(q);
       querySnapshot.forEach((doc) => {
         // doc.data() is never undefined for query doc snapshots
-        console.log(doc.id, " => ", doc.data());
+        // console.log(doc.id, " => ", doc.data());
         setListOfPics(listOfPics=>[...listOfPics,doc.data()]);
       });
   }
