@@ -30,13 +30,14 @@ function Header() {
     }
 
     const onCreateClick=()=>{
-      if(session)
-      {
-        router.push('/art-builder')
-      }
-      else{
-        signIn()
-      }
+      router.push('/art-builder')
+      // if(session)
+      // {
+      //   router.push('/art-builder')
+      // }
+      // else{
+      //   signIn()
+      // }
     }
 
 
