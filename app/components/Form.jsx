@@ -156,7 +156,7 @@ function Form() {
                 className=' outline-none  w-full  pb-4 mt-2
                 border-b-[2px] border-gray-400 placeholder-gray-400'/> */}
 
-            {/* <button onClick={()=>onSave()}
+            <button onClick={()=>alert("현재 테스트 중이라 저장❌")}
                 className='bg-red-500 p-2
                 text-white font-semibold px-3 w-full
                 rounded-lg'>
@@ -166,7 +166,7 @@ function Form() {
                     alt='loading'
                     className='animate-spin'  />:
                     <span>Save</span>}
-            </button>  */}
+            </button> 
 
             </div>
         </div>
